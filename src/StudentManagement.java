@@ -101,18 +101,20 @@ public class StudentManagement {
     }
 
     private static void addStudent() {
-        System.out.print("Enter the Student id : ");
-        int id = scanner.nextInt();
-        scanner.nextLine();
+//        System.out.print("Enter the Student id : ");
+//        int id = scanner.nextInt();
+        System.out.println("The Generated Student id : " + Student.peekNextId() );
+//        scanner.nextLine();
         System.out.print("Enter the Name : ");
         String name = scanner.nextLine();
-        System.out.print("Enter the Age : ");
-        int age = scanner.nextInt();
+//        System.out.print("Enter the Age : ");
+//        int age = scanner.nextInt();
+        int age = getValidAge("Enter the Age : ", 16, 100);
         scanner.nextLine();
         System.out.print("Enter the Course : ");
         String course = scanner.nextLine();
 
-        studentList.add(new Student(id,name,age,course));
+        studentList.add(new Student(name,age,course));
         System.out.println("Details added ");
     }
 
@@ -135,5 +137,27 @@ public class StudentManagement {
         }
         return null;
     }
+
+    private static int getValidAge(String prompt, int minAge, int maxAge) {
+        System.out.print(prompt);
+        String input = scanner.nextLine().trim();
+
+        try {
+            int age = Integer.parseInt(input);
+
+            // Base Case: If the age is realistic and valid, return it instantly!
+            if (age >= minAge && age <= maxAge) {
+                return age;
+            }
+
+            System.out.printf("Error: Age must be a realistic number between %d and %d.%n", minAge, maxAge);
+        } catch (NumberFormatException e) {
+            System.out.println("Error: Invalid input. Letters and symbols are not allowed. Please enter a Positive Age.");
+        }
+
+        // Recursive Case: Something went wrong, ask again without loops
+        return getValidAge(prompt, minAge, maxAge);
+    }
+
 }
 

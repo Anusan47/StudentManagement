@@ -1,19 +1,26 @@
 public class Student {
+    private static int idCounter = 1000;
+
+
     private int studentId ;
     private String name ;
     private int age ;
     private String course;
 
-    Student(int id , String name , int age , String  course){
-        this.studentId = id;
+    Student( String name , int age , String  course){
+        this.studentId = ++idCounter;
         this.name = name;
         this.age = age;
         this.course = course;
     }
 
-    public void setStudentId(int id ){
-        this.studentId=id;
+//    public void setStudentId(int id ){
+//        this.studentId=id;
+//    }
+    public static int peekNextId() {
+        return idCounter + 1;
     }
+
     public int getStudentId(){
         return studentId;
     }
