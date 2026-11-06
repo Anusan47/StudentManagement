@@ -1,5 +1,3 @@
-package Projects.ConsoleApplications.StudentManagement;
-
 public class Student {
     private int studentId ;
     private String name ;

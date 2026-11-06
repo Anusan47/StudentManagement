@@ -1,4 +1,3 @@
-package Projects.ConsoleApplications.StudentManagement;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -9,10 +8,23 @@ public class StudentManagement {
     public static void main(String[] args) {
         int choice;
         do{
-            System.out.println(" 1. View Students list \n 2. Add Student details \n 3. Modify Student details \n 4. Delete Student details \n 5. Exit Application");
-            System.out.print("Enter the choice : ");
+            while(true){
+                System.out.println(" 1. View Students list \n 2. Add Student details \n 3. Modify Student details \n 4. Delete Student details \n 5. Exit Application");
+                System.out.print("Enter the choice : ");
+                String input = scanner.nextLine().trim();
 
-            choice = scanner.nextInt();
+                try {
+                    choice = Integer.parseInt(input);
+
+                    if (choice >= 1 && choice <= 5) {
+                        break; // This breaks the VALIDATION loop, proceeding to the switch below
+                    } else {
+                        System.out.println("Error: Please enter a number between 1 and 5.");
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Error: Invalid input. Letters are not allowed. Please enter a number.");
+                }
+            }
             switch(choice){
                 case 1 -> viewStudent();
 
